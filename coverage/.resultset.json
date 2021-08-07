@@ -195,7 +195,7 @@
           null,
           null,
           1,
-          2,
+          1,
           null,
           null,
           null,
@@ -215,22 +215,19 @@
           null
         ]
       },
-      "/Users/nwz/3_mod/projects/weather_getter/app/controllers/api/v1/forecast_controller.rb": {
+      "/Users/nwz/3_mod/projects/weather_getter/app/services/geocode_service.rb": {
         "lines": [
+          1,
+          1,
+          1,
           1,
           1,
           1,
           null,
           null
         ]
-      },
-      "/Users/nwz/3_mod/projects/weather_getter/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          null
-        ]
       }
     },
-    "timestamp": 1628356243
+    "timestamp": 1628357481
   }
 }
