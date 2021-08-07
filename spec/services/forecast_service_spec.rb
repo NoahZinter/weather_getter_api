@@ -6,6 +6,8 @@ RSpec.describe ForecastService do
       lat = 39.738453
       lng = -104.984853
       data = ForecastService.get_forecast(lat, lng)
+
+      binding.pry
     end
   end
 end
