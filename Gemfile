@@ -23,6 +23,8 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  # gem 'webmock'
+  # gem 'vcr'
 end
 
 group :development do
