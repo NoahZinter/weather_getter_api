@@ -32,5 +32,35 @@ RSpec.describe ForecastService do
       expect(@data[:current][:weather][0][:description]).is_a? String
       expect(@data[:current][:weather][0][:icon]).is_a? String
     end
+
+    it 'contains daily weather info' do
+      expect(@data[:daily]).is_a? Array
+      @data[:daily].each do |day|
+        expect(day).is_a? Hash
+        expect(day).to have_key(:dt)
+        expect(day).to have_key(:sunrise)
+        expect(day).to have_key(:sunset)
+        expect(day).to have_key(:temp)
+        expect(day[:temp]).to have_key(:max)
+        expect(day[:temp]).to have_key(:min)
+        expect(day).to have_key(:weather)
+        expect(day[:weather]).is_a? Array
+        expect(day[:weather][0][:description]).is_a? String
+        expect(day[:weather][0][:icon]).is_a? String
+      end
+    end
+
+    it 'contains hourly weather info' do
+      expect(@data[:hourly]).is_a? Array
+      @data[:hourly].each do |hour|
+        expect(hour).is_a? Hash
+        expect(hour).to have_key(:dt)
+        expect(hour).to have_key(:temp)
+        expect(hour).to have_key(:weather)
+        expect(hour[:weather]).is_a? Array
+        expect(hour[:weather][0][:description]).is_a? String
+        expect(hour[:weather][0][:icon]).is_a? String
+      end
+    end
   end
 end
