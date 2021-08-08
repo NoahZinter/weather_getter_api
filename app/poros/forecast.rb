@@ -15,7 +15,7 @@ class Forecast
                  icon: data[:current][:weather][0][:icon]
                }
     @daily = daily_forecaster(data[:daily])
-    @hourly = {}
+    @hourly = hourly_forecaster(data[:hourly])
   end
 
   def time_converter(utc_time)
@@ -29,6 +29,16 @@ class Forecast
         sunset: time_converter(h[:sunset]),
         max_temp: h[:temp][:max],
         min_temp: h[:temp][:min],
+        conditions: h[:weather][0][:description],
+        icon: h[:weather][0][:icon]
+      }
+    end
+  end
+
+  def hourly_forecaster(hours)
+    hours.map do |h|
+      { time: time_converter(h[:dt]).to_time,
+        temperature: h[:temp],
         conditions: h[:weather][0][:description],
         icon: h[:weather][0][:icon]
       }

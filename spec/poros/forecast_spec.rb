@@ -48,7 +48,20 @@ RSpec.describe Forecast do
       end
     end
 
-    it 'has hourly array'
+    it 'has hourly array' do
+      hourly = @forecast.hourly
+      expect(hourly).is_a? Array
+      hourly.each do |hour|
+        expect(hour).to have_key(:time)
+        expect(hour).to have_key(:temperature)
+        expect(hour).to have_key(:conditions)
+        expect(hour).to have_key(:icon)
+        expect(hour[:time]).is_a? Time
+        expect(hour[:temperature]).to be_a(Float).or be_a(Integer)
+        expect(hour[:conditions]).is_a? String
+        expect(hour[:icon]).is_a? String
+      end
+    end
   end
 
   describe '#time_converter' do
