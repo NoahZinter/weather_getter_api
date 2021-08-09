@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro'
 gem 'faraday'
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'pry'
