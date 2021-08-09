@@ -48,6 +48,8 @@ RSpec.describe Forecast do
       end
     end
 
+    it 'daily array only has 5 days'
+
     it 'has hourly array' do
       hourly = @forecast.hourly
       expect(hourly).is_a? Array
@@ -62,6 +64,15 @@ RSpec.describe Forecast do
         expect(hour[:icon]).is_a? String
       end
     end
+
+    it 'hourly array only has 8 hours'
+
+    it 'does not contain x'
+    it 'does not contain x'
+    it 'does not contain x'
+    it 'does not contain x'
+    it 'does not contain x'
+    it 'does not contain x'
   end
 
   describe '#time_converter' do

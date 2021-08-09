@@ -1,8 +1,10 @@
 class Forecast
   attr_reader :current,
               :daily,
-              :hourly
+              :hourly,
+              :id
   def initialize(data)
+    @id = 'null'
     @current = { datetime: time_converter(data[:current][:dt]),
                  sunrise: time_converter(data[:current][:sunrise]),
                  sunset: time_converter(data[:current][:sunset]),
@@ -23,6 +25,7 @@ class Forecast
   end
 
   def daily_forecaster(days)
+    days = days[0..4]
     days.map do |h|
       { date: time_converter(h[:dt]).to_date,
         sunrise: time_converter(h[:sunrise]),
@@ -36,6 +39,7 @@ class Forecast
   end
 
   def hourly_forecaster(hours)
+    hours = hours[0..7]
     hours.map do |h|
       { time: time_converter(h[:dt]).to_time,
         temperature: h[:temp],
