@@ -8,7 +8,7 @@ RSpec.describe 'Forecast Requests' do
       expect(response.status).to eq 200
 
       forecast = JSON.parse(response.body, symbolize_names: true)
-      binding.pry
+      
     end
   end
 end
