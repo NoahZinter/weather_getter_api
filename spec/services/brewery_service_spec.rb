@@ -5,8 +5,11 @@ RSpec.describe BreweryService do
     it 'retrieves breweries by lat and lng' do
       lat = 39.738453
       lon = -104.984853
-      brew_list = BreweryService.list_breweries(lat, lon)
-      binding.pry
+      limit = '5'
+      brew_list = BreweryService.list_breweries(lat, lon, limit)
+
+      expect(brew_list).is_a? Array
+      expect(brew_list.length).to eq 5
     end
   end
 end
