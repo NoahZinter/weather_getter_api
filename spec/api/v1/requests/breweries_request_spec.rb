@@ -23,14 +23,14 @@ RSpec.describe 'Breweries Requests' do
       expect(breweries[:data][:attributes][:forecast]).to have_key(:summary)
       expect(breweries[:data][:attributes][:forecast][:summary]).is_a? String
       expect(breweries[:data][:attributes][:forecast]).to have_key(:temperature)
-      expect(breweries[:data][:attributes][:forecast][:temperature]).to be_a(Float).to be_a(Integer)
+      expect(breweries[:data][:attributes][:forecast][:temperature]).to be_a(Float).or be_a(Integer)
       expect(breweries[:data][:attributes]).to have_key(:breweries)
       expect(breweries[:data][:attributes][:breweries]).is_a? Array
       breweries[:data][:attributes][:breweries].each do |brew|
         expect(brew).is_a? Brewery
-        expect(brew.id).is_a? Integer
-        expect(brew.name).is_a? String
-        expect(brew.brewery_type).is_a? String
+        expect(brew[:id]).is_a? Integer
+        expect(brew[:name]).is_a? String
+        expect(brew[:brewery_type]).is_a? String
       end
     end
   end
