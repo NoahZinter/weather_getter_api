@@ -5,10 +5,10 @@ class Image
   def initialize(data)
     @id = 'null'
     @image = { location: location_assembler(data),
-               image_url:  '  '
+               image_url: data[:results][0][:urls][:regular]
              }
     @credit = { source: 'https://unsplash.com',
-                author: '  ', 
+                author: data[:results][0][:user][:username], 
                 logo: 'https://unsplash.com/photos/QdqK4doOzcQ'
     }
   end
@@ -16,8 +16,6 @@ class Image
   def location_assembler(data)
     city = data[:results][0][:tags][0][:title]
     state = data[:results][0][:tags][1][:title]
-     binding.pry
-    city + state
-    binding.pry
+    city + ',' + state
   end
 end
