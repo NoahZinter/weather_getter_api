@@ -8,6 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'figaro'
+gem 'faraday'
 
 group :development, :test do
   gem 'pry'
@@ -22,6 +23,8 @@ end
 
 group :test do
   gem 'database_cleaner-active_record'
+  # gem 'webmock'
+  # gem 'vcr'
 end
 
 group :development do
