@@ -10,6 +10,14 @@ RSpec.describe BreweryService do
 
       expect(brew_list).is_a? Array
       expect(brew_list.length).to eq 5
+      brew_list.each do |brewery|
+        expect(brewery).to have_key(:id)
+        expect(brewery[:id]).is_a? Integer
+        expect(brewery).to have_key(:name)
+        expect(brewery[:name]).is_a? String
+        expect(brewery).to have_key(:brewery_type)
+        expect(brewery[:brewery_type]).is_a? String
+      end
     end
   end
 end
