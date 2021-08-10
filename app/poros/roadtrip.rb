@@ -1,0 +1,27 @@
+class Roadtrip
+  attr_reader :id,
+              :start_city,
+              :end_city,
+              :travel_time,
+              :weather_at_eta
+  def initialize(origin, destination)
+    @start_city = origin
+    @end_city = destination
+    @travel_time = travel_time_formatter(origin, destination)
+    @weather_at_eta = weather_formatter(@travel_time)
+  end
+
+  def travel_time_formatter(origin, destination)
+    t_time = DirectionsService.get_travel_time(origin, destination)
+    if t_time.nil?
+      t_time = "impossible"
+    else
+      t_time = "#{t_time[0..1]} hours, #{t_time[3..4]} minutes"
+    end
+    t_time
+  end
+
+  def weather_formatter(time)
+    'nice'
+  end
+end
