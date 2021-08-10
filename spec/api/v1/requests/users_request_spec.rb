@@ -7,9 +7,9 @@ RSpec.describe 'Users Requests' do
       user_params = {
         "email": "e@mail.com",
         "password": "example",
-        "password_confimation": "example"
+        "password_confirmation": "example"
       }
-      post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
       expect(response.status).to eq 201
       user = JSON.parse(response.body, symbolize_names: true)
@@ -33,9 +33,9 @@ RSpec.describe 'Users Requests' do
       user_params = {
         "email": "e@mail.com",
         "password": "example",
-        "password_confimation": "apple"
+        "password_confirmation": "apple"
       }
-      post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
       expect(response.status).to eq 400
       expect(response.body).to eq 'Error: Password and Confirmation Do Not Match'
     end
@@ -45,9 +45,9 @@ RSpec.describe 'Users Requests' do
       user_params = {
         "email": "",
         "password": "example",
-        "password_confimation": "example"
+        "password_confirmation": "example"
       }
-      post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
       expect(response.status).to eq 400
       expect(response.body).to eq 'Error: User Email Missing'
     end
