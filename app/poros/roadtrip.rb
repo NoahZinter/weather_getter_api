@@ -6,6 +6,7 @@ class Roadtrip
               :hours,
               :weather_at_eta
   def initialize(origin, destination)
+    @id = 'null'
     @start_city = origin
     @end_city = destination
     @travel_time = travel_time_formatter(origin, destination)

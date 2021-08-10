@@ -6,6 +6,7 @@ RSpec.describe Roadtrip do
       trip = Roadtrip.new('new york,ny', 'los angeles,ca')
 
       expect(trip).is_a? Roadtrip
+      expect(trip.id).to eq 'null'
       expect(trip.start_city).to eq 'new york,ny'
       expect(trip.end_city).to eq 'los angeles,ca'
       expect(trip.travel_time).to eq '40 hours, 34 minutes'
@@ -19,6 +20,7 @@ RSpec.describe Roadtrip do
       trip = Roadtrip.new('new york,ny', 'london, england')
 
       expect(trip).is_a? Roadtrip
+      expect(trip.id).to eq 'null'
       expect(trip.start_city).to eq 'new york,ny'
       expect(trip.end_city).to eq 'london, england'
       expect(trip.travel_time).to eq 'impossible'
