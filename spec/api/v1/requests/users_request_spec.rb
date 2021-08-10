@@ -40,6 +40,34 @@ RSpec.describe 'Users Requests' do
       expect(response.body).to eq 'Error: Password and Confirmation Do Not Match'
     end
 
+    it 'does not create missing password' do
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "e@mail.com",
+        "password": "",
+        "password_confirmation": ""
+      }
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
+      expect(response.status).to eq 400
+      expect(response.body).to eq 'Error: User Password Missing'
+    end
+
+    it 'does not create when email exists' do
+      api_key = SecureRandom.urlsafe_base64
+      user = User.new(email: 'e@mail.com', password: 'example', api_key: api_key)
+      user.save
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "e@mail.com",
+        "password": "example",
+        "password_confirmation": "example"
+      }
+      post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
+
+      expect(response.status).to eq 400
+      expect(response.body).to eq 'Error: Email Taken'
+    end
+
     it 'does not create with absent email' do
       headers = {"CONTENT_TYPE"=> "application/json"}
       user_params = {
