@@ -12,7 +12,7 @@ RSpec.describe 'Sessions Requests' do
         "email": "e@mail.com",
         "password": "example",
       }
-      post '/api/v1/sessions', headers: headers, params: JSON.generate(session: user_params)
+      post '/api/v1/sessions', headers: headers, params: JSON.generate(user_params)
 
       expect(response.status).to eq 200
 
@@ -32,6 +32,38 @@ RSpec.describe 'Sessions Requests' do
       expect(session_user[:data][:attributes][:api_key]).to eq api_key
       expect(session_user[:data][:attributes]).not_to have_key(:password)
       expect(session_user[:data][:attributes]).not_to have_key(:password_digest)
+    end
+
+    it 'returns an error for incorrect user' do
+      api_key = SecureRandom.urlsafe_base64
+      user = User.new(email: 'e@mail.com', password: 'example', api_key: api_key)
+      user.save
+
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "ex@ample.com",
+        "password": "example",
+      }
+      post '/api/v1/sessions', headers: headers, params: JSON.generate(user_params)
+
+      expect(response.status).to eq 401
+      expect(response.body).to eq 'Error: Bad Credentials'
+    end
+
+    it 'returns the same error for incorrect password' do
+      api_key = SecureRandom.urlsafe_base64
+      user = User.new(email: 'e@mail.com', password: 'example', api_key: api_key)
+      user.save
+
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "e@mail.com",
+        "password": "wrong_password",
+      }
+      post '/api/v1/sessions', headers: headers, params: JSON.generate(user_params)
+
+      expect(response.status).to eq 401
+      expect(response.body).to eq 'Error: Bad Credentials'
     end
   end
 end
