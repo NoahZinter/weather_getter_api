@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
       if new_user.save
         render json: UsersSerializer.new(new_user).serializable_hash.to_json, status: 201
       else
-        render json: 'Error', status: 400
+        render json: 'Error: User Email Missing', status: 400
       end
     end
   end

@@ -29,7 +29,7 @@ RSpec.describe 'Users Requests' do
     end
 
     it 'does not create incorrect password' do
-            headers = {"CONTENT_TYPE"=> "application/json"}
+      headers = {"CONTENT_TYPE"=> "application/json"}
       user_params = {
         "email": "e@mail.com",
         "password": "example",
@@ -40,6 +40,16 @@ RSpec.describe 'Users Requests' do
       expect(response.body).to eq 'Error: Password and Confirmation Do Not Match'
     end
 
-    it 'does not create with absent email'
+    it 'does not create with absent email' do
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "",
+        "password": "example",
+        "password_confimation": "example"
+      }
+      post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+      expect(response.status).to eq 400
+      expect(response.body).to eq 'Error: User Email Missing'
+    end
   end
 end
