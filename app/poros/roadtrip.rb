@@ -10,7 +10,7 @@ class Roadtrip
     @end_city = destination
     @travel_time = travel_time_formatter(origin, destination)
     @hours = hour_formatter(origin, destination)
-    @weather_at_eta = weather_formatter(@travel_time)
+    @weather_at_eta = weather_formatter
   end
 
   def travel_time_formatter(origin, destination)
@@ -33,7 +33,11 @@ class Roadtrip
     t_time
   end
 
-  def weather_formatter(time)
-    'nice'
+  def weather_formatter
+    if @hours != 'impossible'
+      ForecastService.future_weather(@end_city, @hours)
+    else
+      @hours
+    end
   end
 end

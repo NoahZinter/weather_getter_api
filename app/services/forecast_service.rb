@@ -10,6 +10,6 @@ class ForecastService
     url = 'https://api.openweathermap.org/data/2.5/onecall'
     res = Faraday.get(url, {units: 'imperial', lat: coords[:lat], lon: coords[:lng], appid: ENV['WEATHER_API_KEY']})
     cast = JSON.parse(res.body, symbolize_names: true)
-    final = { forecast: cast[:hourly][offset -1][:temp], conditions: cast[:hourly][offset - 1][:weather][0][:description]}
+    final = { temperature: cast[:hourly][offset -1][:temp], conditions: cast[:hourly][offset - 1][:weather][0][:description]}
   end
 end
