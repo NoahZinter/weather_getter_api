@@ -25,7 +25,7 @@ RSpec.describe Roadtrip do
       expect(trip.end_city).to eq 'london, england'
       expect(trip.travel_time).to eq 'impossible'
       expect(trip.hours).to eq 'impossible'
-      expect(trip.weather_at_eta).to eq 'impossible'
+      expect(trip.weather_at_eta).to eq({})
     end
   end
 end

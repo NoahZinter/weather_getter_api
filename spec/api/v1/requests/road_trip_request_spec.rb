@@ -72,5 +72,40 @@ RSpec.describe 'Road Trip Requests' do
       expect(response.status).to eq 401
       expect(response.body).to eq 'Error: Bad Credentials: Check Api Key'
     end
+
+    it 'returns data for impossible trips' do
+      api_key = SecureRandom.urlsafe_base64
+      user = User.new(email: 'e@mail.com', password: 'example', api_key: api_key)
+      user.save
+      headers = {"CONTENT_TYPE"=> "application/json"}
+      roadtrip_params = {
+        "origin": "new york,ny",
+        "destination": "london, england",
+        "api_key": api_key
+      }
+      post '/api/v1/road_trip', headers: headers, params: JSON.generate(roadtrip_params)
+
+      expect(response.status).to eq 200
+      road_trip = JSON.parse(response.body, symbolize_names: true)
+
+      expect(road_trip).is_a? Hash
+      expect(road_trip).to have_key(:data)
+      expect(road_trip[:data]).is_a? Hash
+      expect(road_trip[:data]).to have_key(:id)
+      expect(road_trip[:data][:id]).to eq 'null'
+      expect(road_trip[:data]).to have_key(:type)
+      expect(road_trip[:data][:type]).to eq 'roadtrip'
+      expect(road_trip[:data]).to have_key(:attributes)
+      expect(road_trip[:data][:attributes]).is_a? Hash
+      expect(road_trip[:data][:attributes]).to have_key(:start_city)
+      expect(road_trip[:data][:attributes][:start_city]).to eq 'new york,ny'
+      expect(road_trip[:data][:attributes]).to have_key(:end_city)
+      expect(road_trip[:data][:attributes][:end_city]).to eq 'london, england'
+      expect(road_trip[:data][:attributes]).to have_key(:travel_time)
+      expect(road_trip[:data][:attributes][:travel_time]).to eq 'impossible'
+      expect(road_trip[:data][:attributes]).to have_key(:weather_at_eta)
+      expect(road_trip[:data][:attributes][:weather_at_eta]).is_a? Hash
+      expect(road_trip[:data][:attributes][:weather_at_eta]).to eq({})
+    end
   end
 end

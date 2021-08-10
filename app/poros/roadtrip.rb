@@ -38,7 +38,7 @@ class Roadtrip
     if @hours != 'impossible'
       ForecastService.future_weather(@end_city, @hours)
     else
-      @hours
+      {}
     end
   end
 end
