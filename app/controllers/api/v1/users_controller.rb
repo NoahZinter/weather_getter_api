@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def create
     if user_params[:password] != user_params[:password_confimation]
-      render json: "Error", status: 400
+      render json: "Error: Password and Confirmation Do Not Match", status: 400
     else
       new_user = User.new(email: user_params[:email], password_digest: user_params[:password], api_key: SecureRandom.urlsafe_base64)
       if new_user.save

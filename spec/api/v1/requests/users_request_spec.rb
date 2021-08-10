@@ -27,5 +27,19 @@ RSpec.describe 'Users Requests' do
       expect(user[:data][:attributes]).to have_key(:api_key)
       expect(user[:data][:attributes][:api_key]).is_a? String
     end
+
+    it 'does not create incorrect password' do
+            headers = {"CONTENT_TYPE"=> "application/json"}
+      user_params = {
+        "email": "e@mail.com",
+        "password": "example",
+        "password_confimation": "apple"
+      }
+      post '/api/v1/users', headers: headers, params: JSON.generate(user: user_params)
+      expect(response.status).to eq 400
+      expect(response.body).to eq 'Error: Password and Confirmation Do Not Match'
+    end
+
+    it 'does not create with absent email'
   end
 end
