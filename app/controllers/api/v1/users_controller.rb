@@ -3,7 +3,7 @@ class Api::V1::UsersController < ApplicationController
     if params[:password] != params[:password_confirmation]
       render json: "Error: Password and Confirmation Do Not Match", status: 400
     elsif params[:email] == ''
-      render json: 'Error: User Email Missing', status: 400
+      render json:  'Error: User Email Missing', status: 400
     elsif params[:password] == ''
       render json: 'Error: User Password Missing', status: 400
     elsif User.find_by(email: params[:email]).present?
