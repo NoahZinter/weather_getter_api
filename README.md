@@ -4,8 +4,14 @@ Dev: [Noah Zinter](linkedin.com/in/noahzinter)
 
 ---
 
+# Overview
+
 #### This Api aggregates data from the OpenWeather Api, Unsplash Photo Api, and Mapquest Api to allow a user to get forecasts for a given city, and to input two cities to retrieve roadtrip travel time and a weather forecast in destination city for road trip eta. 
 
+---
+# Table of Contents
+  - 
+    
 ---
 
 # Setup
@@ -36,7 +42,7 @@ UNSPLASH_API_KEY: yougettheidea
 
 #### This API exposes the following endpoints
 
-* # __City Forecast__ 
+* # City Forecast 
     `GET /api/v1/forecast` 
     This endpoint takes a query param of `location` set to a city and state like so 
     `/api/v1/forecast?location=denver,co`
@@ -164,7 +170,7 @@ UNSPLASH_API_KEY: yougettheidea
     }
 }
 ```
-* #City Background Image
+* # City Background Image
   `GET /api/v1/backgrounds`
   This endpoint also takes a query param of `location` as above:
   `/api/v1/backgrounds?location=denver,co`
@@ -193,4 +199,4 @@ UNSPLASH_API_KEY: yougettheidea
 
 ```
   
-* #User Registration
+* # User Registration
