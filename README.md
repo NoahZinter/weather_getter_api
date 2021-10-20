@@ -1,6 +1,6 @@
-# Weather Getter API
+# Weather Getter API ![Circle CI Status](https://circleci.com/gh/NoahZinter/weather_getter_api.svg?style=svg)
 
-Dev: [Noah Zinter](linkedin.com/in/noahzinter)
+## Dev: [Noah Zinter](linkedin.com/in/noahzinter)
 
 ---
 
