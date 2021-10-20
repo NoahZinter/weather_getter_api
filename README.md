@@ -14,6 +14,8 @@ Dev: [Noah Zinter](linkedin.com/in/noahzinter)
   - [Setup](#setup)
   - [Endpoints](#endpoints)
   - [City Forecast](#city-forecast)
+  - [City Background Image](#city-background-image)
+  - [User Registration](#user-registration)
     
 ---
 
