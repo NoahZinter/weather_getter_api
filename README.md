@@ -175,7 +175,7 @@ UNSPLASH_API_KEY: yougettheidea
 }
 ```
 ---
-# City Background Image
+* ## City Background Image
   `GET /api/v1/backgrounds`
   This endpoint also takes a query param of `location` as above:
   `/api/v1/backgrounds?location=denver,co`
@@ -205,4 +205,4 @@ UNSPLASH_API_KEY: yougettheidea
 ```
 ---
   
-# User Registration
+* ## User Registration
