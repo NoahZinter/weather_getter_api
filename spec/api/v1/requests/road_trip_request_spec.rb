@@ -31,7 +31,8 @@ RSpec.describe 'Road Trip Requests' do
       expect(road_trip[:data][:attributes]).to have_key(:end_city)
       expect(road_trip[:data][:attributes][:end_city]).to eq 'los angeles, ca'
       expect(road_trip[:data][:attributes]).to have_key(:travel_time)
-      expect(road_trip[:data][:attributes][:travel_time]).to eq '40 hours, 34 minutes'
+      expect(road_trip[:data][:attributes][:travel_time]).is_a? String
+      expect(road_trip[:data][:attributes][:travel_time]).to include('40 hours')
       expect(road_trip[:data][:attributes]).to have_key(:weather_at_eta)
       expect(road_trip[:data][:attributes][:weather_at_eta]).is_a? Hash
       expect(road_trip[:data][:attributes][:weather_at_eta]).to have_key(:temperature)
