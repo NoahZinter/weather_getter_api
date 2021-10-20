@@ -13,7 +13,7 @@ Dev: [Noah Zinter](linkedin.com/in/noahzinter)
   - [Overview](#overview)
   - [Setup](#setup)
   - [Endpoints](#endpoints)
-  - [City Forecast](##city_forecast)
+  - [City Forecast](#city_forecast)
     
 ---
 
@@ -44,8 +44,9 @@ UNSPLASH_API_KEY: yougettheidea
 # Endpoints
 
 #### This API exposes the following endpoints
+---
 
-## City Forecast 
+# City Forecast 
     `GET /api/v1/forecast` 
     This endpoint takes a query param of `location` set to a city and state like so 
     `/api/v1/forecast?location=denver,co`
@@ -174,7 +175,7 @@ UNSPLASH_API_KEY: yougettheidea
 }
 ```
 ---
-## City Background Image
+# City Background Image
   `GET /api/v1/backgrounds`
   This endpoint also takes a query param of `location` as above:
   `/api/v1/backgrounds?location=denver,co`
@@ -204,4 +205,4 @@ UNSPLASH_API_KEY: yougettheidea
 ```
 ---
   
-## User Registration
+# User Registration
