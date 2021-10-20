@@ -10,7 +10,10 @@ Dev: [Noah Zinter](linkedin.com/in/noahzinter)
 
 ---
 # Table of Contents
-  - 
+  - [Overview](#overview)
+  - [Setup](#setup)
+  - [Endpoints](#endpoints)
+    1 [City Forecast](#city_forecast)
     
 ---
 
