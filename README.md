@@ -13,7 +13,7 @@ Dev: [Noah Zinter](linkedin.com/in/noahzinter)
   - [Overview](#overview)
   - [Setup](#setup)
   - [Endpoints](#endpoints)
-    1 [City Forecast](#city_forecast)
+  - [City Forecast](#city_forecast)
     
 ---
 
