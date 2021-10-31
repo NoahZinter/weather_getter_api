@@ -19,8 +19,6 @@
   - [User Edit](#user-edit)
   - [Session Create](#session-create)
   - [Road Trip Create](#road-trip-create)
-  - [Road Trip Edit](#road-trip-edit)
-  - [Road Trip Delete](#road-trip-delete)
 ---
 
 # Setup
@@ -350,7 +348,18 @@ Expected Response:
   Expect appropriate errors if API key is missing/incorrect, or if road trip is impossible. For example, expected JSON response for a road trip from New York, NY to London would be: 
   
   ```
-  
+  {
+    "data": {
+        "id": "null",
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "new york, ny",
+            "end_city": "london, england",
+            "travel_time": "impossible",
+            "weather_at_eta": {}
+        }
+    }
+  }
   
   ```
    
