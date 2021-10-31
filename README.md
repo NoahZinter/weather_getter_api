@@ -16,7 +16,11 @@
   - [City Forecast](#city-forecast)
   - [City Background Image](#city-background-image)
   - [User Registration](#user-registration)
-    
+  - [User Edit](#user-edit)
+  - [Session Create](#session-create)
+  - [Road Trip Create](#road-trip-create)
+  - [Road Trip Edit](#road-trip-edit)
+  - [Road Trip Delete](#road-trip-delete)
 ---
 
 # Setup
@@ -208,3 +212,149 @@ UNSPLASH_API_KEY: yougettheidea
 ---
   
 * ## User Registration
+ To create (register) a User, post to the following route. Include relevant User details in the body of the post request, and not as params. Expect appropriate error messages if email is taken or missing, or is password is missing or mis-matched. 
+  
+ `POST /api/v1/users`
+ Body: 
+ 
+ ```
+ {
+    "email": "7@user.com",
+    "password": "secret", 
+    "password_confirmation": "secret"
+}
+```
+ 
+ Upon successful User registration, the JSON response will include User id, email, and a randomly-generated API key to be used for Road Trip creation. 
+ 
+ Example Response: 
+ 
+ ```
+ {
+    "data": {
+        "id": "6",
+        "type": "users",
+        "attributes": {
+            "email": "7@user.com",
+            "api_key": "rand0mlygen3ratedstr1ing"
+        }
+    }
+}
+ 
+ ```
+ 
+ ---
+ 
+ * ## User Edit
+
+  Future iterations will allow for editing of users at endpoint
+  
+  `PATCH /api/v1/users/:id`
+  
+  Body: 
+  ```
+  {
+    "email": "7@user.com",
+    "password": "secret", 
+    "password_confirmation": "secret"
+}
+```
+  
+  Password may be edited with this endpoint, but will still require confirmation. Expect appropriate errors if email or password is blank, or if password and confirmation do not match. 
+  
+  
+  
+---
+
+* ## Session Create
+
+  For an already-registered User to login (or create a session) send a request to 
+  
+  ` POST /api/v1/sessions `
+  
+  with the User email and password in the body. 
+  
+  Body: 
+  
+  ```
+   {
+    "email": "4@user.com",
+    "password": "secret"
+   }
+   ```
+   
+
+The body of this response should be the same as upon User Registration, including the same API key. 
+
+Expected Response:
+
+```
+
+ {
+    "data": {
+        "id": "6",
+        "type": "users",
+        "attributes": {
+            "email": "7@user.com",
+            "api_key": "rand0mlygen3ratedstr1ing"
+        }
+    }
+}
+
+```
+
+
+
+---
+
+* ## Road Trip Create
+
+  A registered User can use their API key to create a road trip from one location to another. The endpoint is:
+  
+  ` POST /api/v1/road_trip `
+  
+  The content of the request should be sent in the body like so: 
+  
+  Body: 
+  
+  ```
+  {
+    "origin": "new york,ny",
+    "destination": "los angeles,ca",
+    "api_key": "rand0mlygen3ratedstr1ing"
+    }
+    ```
+    
+  The JSON response for a valid request should look like so, 
+  
+  Example Response: 
+  
+  ```
+  {
+    "data": {
+        "id": "null",
+        "type": "roadtrip",
+        "attributes": {
+            "start_city": "new york,ny",
+            "end_city": "los angeles,ca",
+            "travel_time": "40 hours, 16 minutes",
+            "weather_at_eta": {
+                "temperature": 61.93,
+                "conditions": "overcast clouds"
+            }
+        }
+    }
+  }
+  ```
+  
+  Expect appropriate errors if API key is missing/incorrect, or if road trip is impossible. For example, expected JSON response for a road trip from New York, NY to London would be: 
+  
+  ```
+  
+  
+  ```
+   
+  
+
+---
+
